@@ -2,6 +2,15 @@
 
 ## Installation
 
+1. Download the latest Release Jar from the `Releases` Branch
+2. Place all needed Propertie Files next to the downlaoded Jar
+    - apikeys.properties
+    - botchannel.properties
+    - botkeys.properties
+    - (Optional) language.properties
+    - (Optional) ignoredMessages.properties
+3. Execute Jar
+
 ### Adding Bots to the `botkeys.properties` file
 
 1. Visit the [Discord Developer Portal](https://discordapp.com/developers/applications)
