@@ -92,7 +92,7 @@ fabric.properties
 *.log
 
 # Properties files
-*.properties
+/*.properties
 
 # BlueJ files
 *.ctxt
