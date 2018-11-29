@@ -61,6 +61,8 @@ public class MessageManager {
         if (guildMessageMap.get(event.getGuild().getIdLong()) != null) return;
 
         final Guild guild = event.getGuild();
+        if (ignoredMessages.get(guild.getIdLong()) == null) ignoredMessages.put(guild.getIdLong(), new ArrayList<Long>());
+
         String botChannelID = botChannelProperties.getProperty(String.valueOf(guild.getIdLong()), "");
         if (botChannelID.equals("")) return;
         final TextChannel textChannel = guild.getTextChannelById(botChannelID);
