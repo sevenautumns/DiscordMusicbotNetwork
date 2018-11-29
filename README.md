@@ -64,7 +64,7 @@ The Bots you add need their own Bot Channel to work properly and you need to add
 There are currently 2 Languages available
 - Englisch
 - German
-- 
+
 if no language is selected, englisch is used per default
 
 1. Copy Guild ID like in the `Adding a BotChannel...` Part
