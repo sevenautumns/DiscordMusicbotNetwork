@@ -32,12 +32,12 @@
 ![Bot Token](Installation/BotToken.png?raw=true "Bot Token")
 
 6. Add the revealed Bot Token to the `botkeys.properties` file in the following format: `BOT_NAME=BOT_TOKEN`
-7. You may add as many Bots to the `botkeys.properties` file as you like
+7. You may add as many Bots to the `botkeys.properties` file as you want
 
 ### Adding API Keys to the `apikeys.properties` file
 
 1. Follow the following [Guide](https://www.slickremix.com/docs/get-api-key-for-youtube/) to obtaining your Youtube API key
-2. Add you Youtube API key to the `apikeys.properties` file in the following format: `youtube-key=YOUR_API_KEY`
+2. Add your Youtube API key to the `apikeys.properties` file in the following format: `youtube-key=YOUR_API_KEY`
 
 ### Adding your Bot to a Server
 
@@ -64,7 +64,8 @@ The Bots you add need their own Bot Channel to work properly and you need to add
 There are currently 2 Languages available
 - Englisch
 - German
-if not language is selected, englisch is used per default
+- 
+if no language is selected, englisch is used per default
 
 1. Copy Guild ID like in the `Adding a BotChannel...` Part
 2. Add Guild ID to the `language.properties` file in the following format: `GUILD_ID=LANGUAGE` with LANGUAGE being either Englisch or German
