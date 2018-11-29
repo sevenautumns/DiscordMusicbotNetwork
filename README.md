@@ -2,7 +2,7 @@
 
 ## Installation
 
-1. Download the latest Release Jar from the `Releases` Branch
+1. Download the latest Release Jar from the [Releases Branch](https://gitlab.tu-clausthal.de/sfri16/discordmusicbotnetwork/tree/Releases)
 2. Place all needed Propertie Files next to the downlaoded Jar
     - apikeys.properties
     - botchannel.properties
