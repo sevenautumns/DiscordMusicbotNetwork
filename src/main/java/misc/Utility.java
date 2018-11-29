@@ -12,6 +12,7 @@ public class Utility {
             input = new FileInputStream(File);
             properties.load(input);
         } catch (Exception ex) {
+            System.err.println("There is no " + File + " File");
             ex.printStackTrace();
         } finally {
             if (input != null) {
