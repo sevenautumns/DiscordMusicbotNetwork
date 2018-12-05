@@ -17,3 +17,8 @@
 - Added Properties File for Ignored Message
 - Added Checksum to MainMessage, that message is not getting send, if it didnt change
 - Switchd from JDA 3.8.1_441 to 3.8.1_447
+
+## 1.4-Beta
+
+- Introduced NormalizedAudioTrack
+- Youtube Audio Tracks are normalized now

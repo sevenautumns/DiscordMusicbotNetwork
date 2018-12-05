@@ -22,8 +22,8 @@ public class BotAudioPlayer extends AudioEventAdapter {
     private Playmode playmode;
     private final AudioPlayer player;
     private AudioPlayerState state;
-    private Vector<AudioTrack> queue;
-    private Stack<AudioTrack> old;
+    private Vector<NormalizedAudioTrack> queue;
+    private Stack<NormalizedAudioTrack> old;
     private static final int VOLUME = 14;
 
     public BotAudioPlayer(JDA bot, AudioPlayerManager audioPlayerManager){
@@ -38,40 +38,42 @@ public class BotAudioPlayer extends AudioEventAdapter {
     }
 
     public synchronized void addTrack(AudioTrack track){
-        track = track.makeClone();
+        NormalizedAudioTrack nTrack = new NormalizedAudioTrack(track.makeClone(), VOLUME);
 
         if(queue.size() != 0){
-            queue.add(track);
+            queue.add(nTrack);
             return;
         }
 
-        queue.add(track);
+        queue.add(nTrack);
 
         player.setPaused(false);
         state = AudioPlayerState.PLAYING;
-        player.startTrack(track, false);
+        
+        startTrack(nTrack);
     }
 
     public synchronized void previousSong(){
         if(playmode == Playmode.LOOPALL){
             if(queue.size() == 0) return;
-            AudioTrack lastTrack = queue.lastElement();
+            NormalizedAudioTrack lastTrack = queue.lastElement();
             queue.remove(lastTrack);
             queue.add(0, lastTrack.makeClone());
 
-            player.startTrack(queue.firstElement(), false);
+            startTrack(queue.firstElement());
             state = AudioPlayerState.PLAYING;
             return;
         }
 
         if(old.size() == 0 ) return;
 
-        AudioTrack track = old.pop();
+        NormalizedAudioTrack track = old.pop();
 
         if(queue.size() > 0) queue.set(0, queue.firstElement().makeClone());
 
         queue.add(0, track.makeClone());
-        player.startTrack(queue.firstElement(), false);
+
+        startTrack(queue.firstElement());
         state = AudioPlayerState.PLAYING;
     }
 
@@ -92,7 +94,8 @@ public class BotAudioPlayer extends AudioEventAdapter {
             return;
         }else{
             queue.set(0, queue.firstElement().makeClone());
-            player.startTrack(queue.firstElement(), false);
+
+            startTrack(queue.firstElement());
             state = AudioPlayerState.PLAYING;
         }
     }
@@ -160,16 +163,23 @@ public class BotAudioPlayer extends AudioEventAdapter {
                 break;
             case LOOPONE:
                 queue.set(0, queue.firstElement().makeClone());
-                player.startTrack(queue.firstElement(), false);
+
+                startTrack(queue.firstElement());
                 break;
             case LOOPALL:
                 queue.add(queue.firstElement().makeClone());
                 queue.remove(0);
                 queue.set(0, queue.firstElement().makeClone());
-                player.startTrack(queue.firstElement(), false);
+
+                startTrack(queue.firstElement());
                 break;
             default:
         }
+    }
+
+    private void startTrack(NormalizedAudioTrack track){
+        player.setVolume(track.getNormalizedVolume());
+        player.startTrack(track, false);
     }
 
     public void destroy(){
