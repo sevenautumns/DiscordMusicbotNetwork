@@ -24,7 +24,7 @@ public class BotAudioPlayer extends AudioEventAdapter {
     private AudioPlayerState state;
     private Vector<NormalizedAudioTrack> queue;
     private Stack<NormalizedAudioTrack> old;
-    private static final int VOLUME = 14;
+    private static final int VOLUME = 18;
 
     public BotAudioPlayer(JDA bot, AudioPlayerManager audioPlayerManager){
         queue = new Vector<>();
@@ -179,7 +179,7 @@ public class BotAudioPlayer extends AudioEventAdapter {
 
     private void startTrack(NormalizedAudioTrack track){
         player.setVolume(track.getNormalizedVolume());
-        player.startTrack(track, false);
+        player.startTrack(track.getAudioTrack(), false);
     }
 
     public void destroy(){

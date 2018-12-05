@@ -38,23 +38,30 @@ public class NormalizedAudioTrack implements AudioTrack {
     public NormalizedAudioTrack(AudioTrack audioTrack, int targetVolume){
         this.audioTrack = audioTrack;
         this.targetVolume = targetVolume;
+        this.normalizedVolume = targetVolume;
 
-        calculateNormalized();
+        new Thread(){
+            @Override
+            public void run() {
+                calculateNormalized();
+            }
+        }.start();
     }
 
-    private void calculateNormalized(){
+    private synchronized void calculateNormalized(){
         if(!audioTrack.getInfo().uri.contains("youtu")){
             normalizedVolume = targetVolume;
             return;
         }
 
         String id = audioTrack.getInfo().uri.split("=")[1];
+        String in = "";
         URL url = null;
         try {
             url = new URL(infoUri + id);
             Scanner scanner = new Scanner(url.openStream());
 
-            String in = scanner.nextLine();
+            in = scanner.nextLine();
             Pattern pat = Pattern.compile("relative_loudness=(.*?)&");
             Matcher mat = pat.matcher(in);
 
@@ -64,14 +71,17 @@ public class NormalizedAudioTrack implements AudioTrack {
             normalizedVolume = (int) Math.round(percent * targetVolume);
         } catch (Exception e) {
             normalizedVolume = targetVolume;
-            return;
         }
 
 
     }
 
-    public int getNormalizedVolume(){
-        return 14;
+    public AudioTrack getAudioTrack(){
+        return audioTrack;
+    }
+
+    public synchronized int getNormalizedVolume(){
+        return normalizedVolume;
     }
 
     @Override
