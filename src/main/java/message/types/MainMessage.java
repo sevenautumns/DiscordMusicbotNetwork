@@ -240,7 +240,7 @@ public class MainMessage extends BotMessage {
 
         private long generateChecksum(MessageEmbed embed){
             CRC32 checksum = new CRC32();
-            checksum.update(ArrayUtils.addAll(embed.getDescription().getBytes(), embed.getDescription().getBytes()));
+            checksum.update(embed.getDescription().getBytes());
             return checksum.getValue();
         }
     }

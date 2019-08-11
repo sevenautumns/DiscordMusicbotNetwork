@@ -1,7 +1,6 @@
 package music;
 
 import com.google.api.services.youtube.YouTube;
-import com.sapher.youtubedl.YoutubeDLRequest;
 import com.sedmelluq.discord.lavaplayer.format.AudioDataFormat;
 import com.sedmelluq.discord.lavaplayer.format.OpusAudioDataFormat;
 import com.sedmelluq.discord.lavaplayer.format.transcoder.AudioChunkDecoder;

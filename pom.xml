@@ -6,7 +6,7 @@
 
     <groupId>de.weaboo</groupId>
     <artifactId>EasyMusicBotNetwork</artifactId>
-    <version>1.4-Beta</version>
+    <version>1.4.2-Beta</version>
     <build>
         <plugins>
             <plugin>
@@ -24,12 +24,12 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.8.1_447</version>
+            <version>3.8.3_464</version>
         </dependency>
         <dependency>
             <groupId>com.sedmelluq</groupId>
             <artifactId>lavaplayer</artifactId>
-            <version>1.3.10</version>
+            <version>1.3.20</version>
         </dependency>
         <dependency>
             <groupId>com.sedmelluq</groupId>
@@ -39,17 +39,17 @@
         <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-youtube</artifactId>
-            <version>v3-rev206-1.25.0</version>
+            <version>v3-rev212-1.25.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client</artifactId>
-            <version>1.26.0</version>
+            <version>1.30.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
+            <version>3.9</version>
         </dependency>
     </dependencies>
 

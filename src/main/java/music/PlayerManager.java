@@ -9,6 +9,7 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import message.MessageManager;
+import misc.LogBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.audio.AudioSendHandler;
 import net.dv8tion.jda.core.entities.Guild;
@@ -133,7 +134,10 @@ public class PlayerManager {
 
     public void addTrackToPlayer(final Guild guild, final long botID, final long userID, final String query){
         final BotAudioPlayer player = playerMap.get(guild.getId() + botID);
-        if (player == null) return;
+        if (player == null) {
+            System.err.println(LogBuilder.Build(botID, guild.getIdLong(), userID, query) + "Failed because there is no Player");
+            return;
+        }
 
         AUDIOPLAYERMANAGER.loadItem(query, new AudioLoadResultHandler() {
             @Override

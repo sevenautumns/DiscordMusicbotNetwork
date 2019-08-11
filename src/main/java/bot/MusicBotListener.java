@@ -1,6 +1,7 @@
 package bot;
 
 import message.MessageManager;
+import misc.LogBuilder;
 import music.PlayerManager;
 import net.dv8tion.jda.core.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
@@ -17,8 +18,12 @@ public class MusicBotListener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        if(BotManager.getInstance().getFirstBotID(event.getGuild()) != event.getJDA().getSelfUser().getIdLong()) return;
+        if(BotManager.getInstance().getFirstBotID(event.getGuild()) != event.getJDA().getSelfUser().getIdLong()) {
+            System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage(), false));
+            return;
+        }
 
+        System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage(), true));
         MessageManager.getInstance().onGuildMessageReceived(event);
     }
 

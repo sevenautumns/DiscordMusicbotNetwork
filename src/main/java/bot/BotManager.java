@@ -6,8 +6,10 @@ import music.PlayerManager;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 
 import javax.security.auth.login.LoginException;
@@ -33,6 +35,7 @@ public class BotManager {
                         .build()
                         .awaitReady();
                 jda.getPresence().setGame(null);
+                jda.getPresence().setStatus(OnlineStatus.INVISIBLE);
 
                 botMap.put(jda.getSelfUser().getIdLong(), jda);
             } catch (InterruptedException e) {
@@ -87,6 +90,19 @@ public class BotManager {
 
         JDA[] jdas = new JDA[bots.size()];
         return bots.toArray(jdas);
+    }
+
+    public VoiceChannel getVoiceChannel(long userID){
+        for(Object o: botMap.values().toArray()){
+            JDA bot = (JDA) o;
+            User user = bot.getUserById(userID);
+            List<Guild> guilds = user.getMutualGuilds();
+            for (Guild g: guilds){
+                if(!g.getMemberById(userID).getVoiceState().inVoiceChannel()) continue;
+                return g.getMemberById(userID).getVoiceState().getChannel();
+            }
+        }
+        return null;
     }
 
     public synchronized void checkChannelJoinEvent(VoiceChannel channel, long botID){ //TODO es sind unendlich viele Bots in einem channel möglich

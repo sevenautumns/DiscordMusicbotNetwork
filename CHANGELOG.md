@@ -22,3 +22,9 @@
 
 - Introduced NormalizedAudioTrack
 - Youtube Audio Tracks are normalized now
+
+## 1.4.2-Beta
+
+- Disabled Normalization again (Resulted in weird behaviour)
+- Updated Dependencies
+    - New Version of [Lavaplayer](https://github.com/sedmelluq/lavaplayer) which fixed Youtube Song playback

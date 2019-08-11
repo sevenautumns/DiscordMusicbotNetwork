@@ -30,13 +30,13 @@ public class APIManager {
             youTube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
                 public void initialize(HttpRequest httpRequest) {
                 }
-            }).setApplicationName("Music Bot Search" + query).build();
+            }).setApplicationName("musicbotnetwork").build();
 
             YouTube.Search.List search = youTube.search().list("id,snippet");
             search.setKey(APIKEYS.getProperty("youtube-key"));
             search.setQ(query);
             search.setType("video");
-            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
+            search.setFields("items(id/videoId,snippet/title)");
             search.setMaxResults((long) resultsNumber);
 
             SearchListResponse searchListResponse = search.execute();

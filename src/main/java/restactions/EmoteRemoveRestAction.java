@@ -20,6 +20,7 @@ public class EmoteRemoveRestAction extends RestAction {
     @Override
     public void complete(JDA jda) {
         User user = jda.getUserById(USER_ID);
+
         if(EMOTE != null) jda.getGuildById(GUILD_ID).getTextChannelById(CHANNEL_ID).removeReactionById(MESSAGE_ID, EMOTE, user).complete();
         else jda.getGuildById(GUILD_ID).getTextChannelById(CHANNEL_ID).removeReactionById(MESSAGE_ID, EMOTE_UNICODE, user).complete();
     }

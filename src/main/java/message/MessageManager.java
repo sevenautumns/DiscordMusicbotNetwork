@@ -8,6 +8,7 @@ import message.enums.Language;
 import message.types.BotMessage;
 import message.types.MainMessage;
 import message.types.SearchMessage;
+import misc.LogBuilder;
 import misc.Utility;
 import music.APIManager;
 import music.BotAudioPlayer;
@@ -18,12 +19,13 @@ import net.dv8tion.jda.core.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageDeleteEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent;
+import sun.rmi.runtime.Log;
 
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class MessageManager {
-    private HashMap<Long, HashMap<Long, BotMessage>> guildMessageMap;
+    private final HashMap<Long, HashMap<Long, BotMessage>> guildMessageMap;
     private Timer timeoutDelete;
     private Properties botChannelProperties;
     private Properties guildLanguageProperties;
@@ -111,8 +113,14 @@ public class MessageManager {
     }
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        if (BotManager.getInstance().isMusicBot(event.getAuthor().getIdLong())) return;
-        if (!event.getChannel().getId().equals(botChannelProperties.getProperty(String.valueOf(event.getGuild().getIdLong()), ""))) return;
+        if (BotManager.getInstance().isMusicBot(event.getAuthor().getIdLong())) {
+            System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored Because Message was send by MusicBot");
+            return;
+        }
+        if (!event.getChannel().getId().equals(botChannelProperties.getProperty(String.valueOf(event.getGuild().getIdLong()), ""))){
+            System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored because it was not send in a BotChannel");
+            return;
+        }
 
         event.getMessage().delete().queue();
 
@@ -128,6 +136,8 @@ public class MessageManager {
                     channel.sendMessage("Du bist in keinen Sprachkanal. Bitte geh in einen Sprachkanal um einen Musikbot zu nutzen").queue();
                     break;
             }
+            System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored because User was not in a VoiceChannel");
+            return;
         }
         reactToMessage(event);
     }
@@ -192,14 +202,21 @@ public class MessageManager {
         if (event.getMessage().getContentRaw().charAt(0) != '.') {
             PlayerManager manager = PlayerManager.getInstance();
             VoiceChannel channel = event.getMember().getVoiceState().getChannel();
-            if(channel == null) return;
+            if(channel == null) {
+                System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored because Bot couldn't get VoiceChannel");
+                return;
+            }
             BotAudioPlayer player = manager.getAudioPlayer(channel);
             JDA bot;
             if (player == null) bot = manager.connectToVoiceChannel(event.getMember().getVoiceState().getChannel());
             else bot = player.BOT;
 
-            if(bot == null) return;
+            if(bot == null) {
+                System.err.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "No Bot in VoiceChannel");
+                return;
+            }
 
+            System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Initiate Song Add Process");
             manager.addTrackToPlayer(event.getGuild(), bot.getSelfUser().getIdLong(), event.getAuthor().getIdLong(), event.getMessage().getContentRaw());
             return;
         }
@@ -209,6 +226,7 @@ public class MessageManager {
         try {
             command = Commands.valueOf(messageSplit[0].substring(1));
         } catch (Exception e) {
+            System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored because Message is no Command");
             return;
         }
 
@@ -217,14 +235,18 @@ public class MessageManager {
                 try {
                     long numb = Long.parseLong(messageSplit[1]) * 1000;
                     PlayerManager.getInstance().getAudioPlayer(event.getMember().getVoiceState().getChannel()).jump(numb);
+                    System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Jumped");
                 } catch (Exception e) {
+                    System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored because JUMP failed");
                 }
                 break;
             case FORWARD:
                 try {
                     long numb = Long.parseLong(messageSplit[1]) * 1000;
                     PlayerManager.getInstance().getAudioPlayer(event.getMember().getVoiceState().getChannel()).forward(numb);
+                    System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Forwarded");
                 } catch (Exception e) {
+                    System.out.println(LogBuilder.Build(event.getJDA(), event.getMessage()) + "Ignored because FORWARD failed");
                 }
                 break;
         }
