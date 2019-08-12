@@ -15,8 +15,8 @@
 ## 1.3-Beta
 
 - Added Properties File for Ignored Message
-- Added Checksum to MainMessage, that message is not getting send, if it didnt change
-- Switchd from JDA 3.8.1_441 to 3.8.1_447
+- Added Checksum to MainMessage, that the message is not updated, if it didnt change
+- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.1_441 to 3.8.1_447
 
 ## 1.4-Beta
 
@@ -26,5 +26,6 @@
 ## 1.4.2-Beta
 
 - Disabled Normalization again (Resulted in weird behaviour)
-- Updated Dependencies
-    - New Version of [Lavaplayer](https://github.com/sedmelluq/lavaplayer) which fixed Youtube Song playback
+- Switched from [Lavaplayer](https://github.com/sedmelluq/lavaplayer) 1.3.10 to 1.3.20
+- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.1_447 to 3.8.3_464
+- Various dependency upgrades
