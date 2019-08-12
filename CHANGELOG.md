@@ -4,8 +4,8 @@
 
 - Disabled Normalization again (Resulted in weird behaviour)
 - Switched from [Lavaplayer](https://github.com/sedmelluq/lavaplayer) 1.3.10 to 1.3.20
-- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.1_447 to 3.8.3_464
   - Fixed Youtube Playback
+- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.1_447 to 3.8.3_464
 - Various dependency upgrades
 
 ## 1.4-Beta
