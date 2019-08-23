@@ -1,7 +1,7 @@
 package restactions;
 
 import message.enums.Emoji;
-import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.api.JDA;
 
 public class EmoteAddRestAction extends RestAction {
     public final Emoji EMOJI;

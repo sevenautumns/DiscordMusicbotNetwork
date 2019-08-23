@@ -3,14 +3,14 @@ package bot;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import misc.Utility;
 import music.PlayerManager;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.OnlineStatus;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.entities.VoiceChannel;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.VoiceChannel;
 
 import javax.security.auth.login.LoginException;
 import java.util.*;
@@ -28,14 +28,12 @@ public class BotManager {
 
         for(Object key : botkeys.keySet().toArray()){
             try {
-                JDA jda = new JDABuilder(AccountType.BOT)
-                        .setToken(botkeys.getProperty((String) key))
+                JDA jda = new JDABuilder(botkeys.getProperty((String) key))
                         .setAudioSendFactory(new NativeAudioSendFactory())
-                        .addEventListener(new MusicBotListener())
+                        .addEventListeners(new MusicBotListener())
+                        .setStatus(OnlineStatus.INVISIBLE)
                         .build()
                         .awaitReady();
-                jda.getPresence().setGame(null);
-                jda.getPresence().setStatus(OnlineStatus.INVISIBLE);
 
                 botMap.put(jda.getSelfUser().getIdLong(), jda);
             } catch (InterruptedException e) {

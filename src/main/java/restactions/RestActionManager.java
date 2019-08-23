@@ -2,8 +2,8 @@ package restactions;
 
 import bot.BotManager;
 import message.enums.Emoji;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Emote;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.Emote;
 
 import java.util.Arrays;
 import java.util.Vector;

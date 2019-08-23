@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.3-Beta
+
+- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.3_464 to 4.0.0_45
+- Switched from [JDA-NAS](https://github.com/sedmelluq/jda-nas) 1.0.6 to 1.1.0
+
 ## 1.4.2-Beta
 
 - Disabled Normalization again (Resulted in weird behaviour)

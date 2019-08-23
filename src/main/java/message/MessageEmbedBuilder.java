@@ -1,7 +1,7 @@
 package message;
 
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageEmbed;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class MessageEmbedBuilder {

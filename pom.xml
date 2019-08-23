@@ -6,7 +6,7 @@
 
     <groupId>de.weaboo</groupId>
     <artifactId>EasyMusicBotNetwork</artifactId>
-    <version>1.4.2-Beta</version>
+    <version>1.4.3-Beta</version>
     <build>
         <plugins>
             <plugin>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.8.3_464</version>
+            <version>4.0.0_45</version>
         </dependency>
         <dependency>
             <groupId>com.sedmelluq</groupId>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.sedmelluq</groupId>
             <artifactId>jda-nas</artifactId>
-            <version>1.0.6</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.apis</groupId>

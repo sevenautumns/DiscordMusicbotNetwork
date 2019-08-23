@@ -2,8 +2,8 @@ package restactions;
 
 import message.MessageManager;
 import message.enums.Emoji;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageDeleteEvent;
-import net.dv8tion.jda.core.events.message.react.MessageReactionRemoveEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
 
 import java.util.HashMap;
 

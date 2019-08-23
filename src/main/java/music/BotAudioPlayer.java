@@ -11,7 +11,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import music.enums.AudioPlayerState;
 import music.enums.Playmode;
-import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.api.JDA;
 
 import java.util.List;
 import java.util.Stack;

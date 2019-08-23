@@ -2,7 +2,9 @@ package music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame;
-import net.dv8tion.jda.core.audio.AudioSendHandler;
+import net.dv8tion.jda.api.audio.AudioSendHandler;
+
+import java.nio.ByteBuffer;
 
 /**
  * This is a wrapper around BotAudioPlayer which makes it behave as an AudioSendHandler for JDA. As JDA calls canProvide
@@ -30,7 +32,7 @@ public class AudioPlayerSendHandler implements AudioSendHandler {
     }
 
 
-    public byte[] provide20MsAudio() {
+    public ByteBuffer provide20MsAudio() {
         if (lastFrame == null) {
             lastFrame = audioPlayer.provide();
         }
@@ -38,7 +40,7 @@ public class AudioPlayerSendHandler implements AudioSendHandler {
         byte[] data = lastFrame != null ? lastFrame.getData() : null;
         lastFrame = null;
 
-        return data;
+        return ByteBuffer.wrap(data);
     }
 
 

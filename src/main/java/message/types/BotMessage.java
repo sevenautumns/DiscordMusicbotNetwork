@@ -2,9 +2,9 @@ package message.types;
 
 import com.google.api.services.youtube.model.SearchResult;
 import message.enums.Language;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public abstract class BotMessage {
     }
 
     protected Message getMessage(){
-        return getTextChannel().getMessageById(MESSAGE_ID).complete();
+        return getTextChannel().retrieveMessageById(MESSAGE_ID).complete();
     }
 
     public void deleteMessage(){

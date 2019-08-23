@@ -10,13 +10,14 @@ import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import message.MessageManager;
 import misc.LogBuilder;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.audio.AudioSendHandler;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.entities.VoiceChannel;
-import net.dv8tion.jda.core.managers.AudioManager;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.audio.AudioSendHandler;
+import net.dv8tion.jda.api.audio.SpeakingMode;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.managers.AudioManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +46,7 @@ public class PlayerManager {
         JDA[] bots = BotManager.getInstance().getBots(channel.getGuild().getIdLong());
         for (JDA b: bots) {
             if(!b.getGuildById(channel.getGuild().getIdLong()).getSelfMember().getVoiceState().inVoiceChannel())continue;
-            if(b.getGuildById(channel.getGuild().getIdLong()).getSelfMember().getVoiceState().getAudioChannel().getIdLong() != channel.getIdLong()) continue;
+            if(b.getGuildById(channel.getGuild().getIdLong()).getSelfMember().getVoiceState().getChannel().getIdLong() != channel.getIdLong()) continue;
 
             return playerMap.get(channel.getGuild().getId() + b.getSelfUser().getId());
         }
