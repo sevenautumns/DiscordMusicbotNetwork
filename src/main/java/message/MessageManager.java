@@ -97,6 +97,7 @@ public class MessageManager {
                     newMainMessage(guild.getIdLong(), event.getJDA());
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.err.println("Please Delete Message by Hand");
                 }
             }
         }.start();
