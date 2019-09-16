@@ -2,7 +2,7 @@
 
 ## Installation
 
-1. Download the [latest Release Jar](Jars/RELEASES.md)
+1. Download the [latest Release Jar](https://github.com/Steav005/DiscordMusicbotNetwork/releases)
 2. Place all needed Propertie Files next to the downlaoded Jar
     - apikeys.properties
     - botchannel.properties
@@ -43,7 +43,7 @@
 
 Just replace BOT_ID in the following Link with the Client ID of your Bot.
 
-https://discordapp.com/api/oauth2/authorize?client_id=BOT_ID&scope=bot&permissions=8
+https://discordapp.com/api/oauth2/authorize?client_id=BOT_ID&scope=de.autumnal.discordmusicbotnetwork.bot&permissions=8
 
 You can find the Client ID in the [Discord Developer Portal](https://discordapp.com/developers/applications)
 ![Bot ID](Installation/BotID.png?raw=true "Bot ID")

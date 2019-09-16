@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.4.4-Beta
+
+- Fixed Emote related errors
+
 ## 1.4.3-Beta
 
 - Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.3_464 to 4.0.0_45
@@ -21,7 +25,7 @@
 ## 1.3-Beta
 
 - Added Properties File for Ignored Message
-- Added Checksum to MainMessage, that the message is not updated, if it didnt change
+- Added Checksum to MainMessage, that the de.autumnal.discordmusicbotnetwork.message is not updated, if it didnt change
 - Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 3.8.1_441 to 3.8.1_447
 
 ## 1.2-Beta
