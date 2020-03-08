@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.3-Beta
+
+- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 4.0.0_45 to 4.1.1_110
+- Various dependency upgrades
+
 ## 1.4.4-Beta
 
 - Fixed Emote related errors
