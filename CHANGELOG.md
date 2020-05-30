@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.7-Beta
+
+- Switched from [JDA](https://github.com/DV8FromTheWorld/JDA)  4.1.1_135 to 4.1.1_155
+- Switched from [Lavaplayer](https://github.com/sedmelluq/lavaplayer) 1.3.46 to 1.3.49
+
 ## 1.4.6-Beta
 
 - Switched from [JDA](https://github.com/DV8FromTheWorld/JDA) 4.1.1_110 to 4.1.1_135
